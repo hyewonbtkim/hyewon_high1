@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>생리 주기 4단계 가이드</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root { --bg: #F8F4E8; --ink: #111111; --text: #222222; --red: #E3262F; --muted: #8A8F98; --rule: #E2DDCF; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1350px; background: var(--bg); overflow: hidden; }
+  body { font-family: "Pretendard", "Noto Sans KR", "Malgun Gothic", sans-serif; color: var(--text); word-break: keep-all; -webkit-font-smoothing: antialiased; }
+  .card { position: relative; width: 1080px; height: 1350px; background: var(--bg); overflow: hidden; }
+
+  /* 타이틀 */
+  .title { position: absolute; top: 46px; left: 0; width: 1080px; text-align: center; font-weight: 900; color: var(--ink); letter-spacing: -3px; line-height: 1.12; }
+  .t1 { font-size: 96px; }
+  .t2 { font-size: 72px; margin-top: 8px; }
+  .accent { font-size: 40px; color: var(--red); letter-spacing: -1px; vertical-align: 14px; margin-right: 14px; }
+
+  /* 인포그래픽 원본 (1721 x 914 → 1080 x 574) */
+  .infowrap { position: absolute; top: 272px; left: 0; width: 1080px; height: 574px; }
+  .infographic { position: absolute; inset: 0; width: 1080px; height: 574px; display: block; }
+  /* 원본 라벨을 배경색으로 가리고 원고 표기로 덮어쓰기 */
+  .cover { position: absolute; background: var(--bg); }
+  .cover.top { left: 94px; top: 22px; width: 942px; height: 68px; }
+  .cover.phase { left: 62px; top: 511px; width: 928px; height: 56px; }
+  .lbl { position: absolute; transform: translateX(-50%); text-align: center; white-space: nowrap; }
+  .period { top: 30px; font-family: "Noto Serif KR", serif; font-weight: 900; font-size: 31px; color: var(--ink); letter-spacing: -1.5px; }
+  .period.hl { color: #111; text-shadow: 0 0 2px #FFB703, 0 0 4px #FFB703, 0 0 6px #FFC93C, 0 0 8px #FFC93C; }
+  .phase { top: 512px; font-size: 37px; font-weight: 500; color: #333; letter-spacing: -0.5px; }
+
+  /* 정보 3행: 컬럼 폭을 원본 이미지의 4개 컬럼에 맞춤 */
+  .rows { position: absolute; top: 852px; left: 53px; width: 976px; }
+  .tag { display: flex; align-items: center; gap: 14px; margin: 12px 0 8px; }
+  .tag span { display: inline-block; background: #111; color: #FFF; font-size: 22px; font-weight: 800; line-height: 1; padding: 7px 14px 8px; border-radius: 8px; letter-spacing: -0.5px; white-space: nowrap; }
+  .tag::after { content: ""; flex: 1; height: 1.5px; background: var(--rule); }
+  .grid { display: grid; grid-template-columns: 238px 252px 250px 236px; }
+  .grid div { text-align: center; font-size: 27px; font-weight: 500; line-height: 1.36; color: var(--text); letter-spacing: -1px; padding: 0 4px; }
+  .grid.act div { font-size: 23px; color: #555; }
+  .grid.act b { display: block; font-size: 32px; font-weight: 800; line-height: 1.3; color: var(--ink); letter-spacing: -1.2px; }
+  .grid.act b.r { color: var(--red); }
+
+  /* 푸터 */
+  .notice { position: absolute; top: 1262px; left: 50%; transform: translateX(-50%); background: #000; color: #fff; font-size: 22px; font-weight: 700; line-height: 1.38; text-align: center; padding: 8px 22px; border-radius: 6px; letter-spacing: -0.6px; white-space: nowrap; }
+  .handle { position: absolute; top: 1318px; right: 40px; font-size: 18px; font-weight: 600; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <h1 class="title">
+    <div class="t1"><span class="accent">눈바디 2탄</span>생리 주기 4단계</div>
+    <div class="t2">이렇게 먹고, 이렇게 움직이세요</div>
+  </h1>
+
+  <div class="infowrap">
+    <img class="infographic" src="assets/cycle_bodies.png" alt="생리 주기 4단계별 눈바디 변화 인포그래픽">
+    <div class="cover top"></div>
+    <div class="cover phase"></div>
+    <div class="lbl period" style="left: 172px;">약 5~7일</div>
+    <div class="lbl period" style="left: 417px;">생리 끝 ~ 배란 전</div>
+    <div class="lbl period hl" style="left: 668px;">3~5일</div>
+    <div class="lbl period" style="left: 911px;">배란 후 ~ 생리 전</div>
+    <div class="lbl phase" style="left: 172px;">&lt;생리기&gt;</div>
+    <div class="lbl phase" style="left: 417px;">&lt;여포기&gt;</div>
+    <div class="lbl phase" style="left: 668px;">&lt;배란기&gt;</div>
+    <div class="lbl phase" style="left: 911px;">&lt;황체기&gt;</div>
+  </div>
+
+  <div class="rows">
+    <div class="tag"><span>몸 상태</span></div>
+    <div class="grid">
+      <div>철분 손실,<br>컨디션 바닥</div>
+      <div>에너지 회복,<br>컨디션 상승</div>
+      <div>컨디션 최고</div>
+      <div>식욕↑ 체온↑<br>붓기</div>
+    </div>
+    <div class="tag"><span>이렇게 먹기</span></div>
+    <div class="grid">
+      <div>철분 + 단백질<br>살코기·조개·두부</div>
+      <div>평소 식단<br>그대로</div>
+      <div>평소 식단<br>그대로</div>
+      <div>더 먹어도 OK<br>염분 극단 제한 X</div>
+    </div>
+    <div class="tag"><span>운동/활동</span></div>
+    <div class="grid act">
+      <div><b class="r">강도 낮추기</b>걷기·요가·가벼운 조깅</div>
+      <div><b>고강도 도전 ok</b>인터벌·근력 증량</div>
+      <div><b>강도 유지</b>관절 워밍업 충분히</div>
+      <div><b class="r">중저강도 운동</b>열 조절↓ → 물 자주</div>
+    </div>
+  </div>
+
+  <div class="handle">스포츠 영양코치 @hyewon_high1</div>
+
+</div>
+</body>
+</html>
