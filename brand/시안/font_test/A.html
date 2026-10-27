@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../brand.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@900&family=Gaegu:wght@700&family=Yeon+Sung&display=block">
+<style>
+  @font-face { font-family: "KyoboHand"; src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff") format("woff"); font-display: block; }
+  html, body { width: 1080px; height: 1920px; background: #000; }
+  .frame { position: relative; width: 1080px; height: 1920px; background: url("../reel_bg.jpg") center / cover; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 85%); }
+  .sub { position: absolute; left: 0; right: 0; top: 1380px; text-align: center; font-family: "KyoboHand"; }
+  .line { display: block; font-size: 112px; font-weight: 400; letter-spacing: 0; line-height: 1.25; color: #fff;
+          -webkit-text-stroke: 12px var(--forest); paint-order: stroke fill; text-shadow: 0 6px 16px rgba(0,0,0,0.35); }
+  .key { position: relative; z-index: 0; display: inline-block; padding: 0 22px 6px; margin: 0 4px; color: var(--forest); -webkit-text-stroke: 0; text-shadow: none; }
+  .key::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--lime); border-radius: 8px; transform: rotate(-2deg); filter: url(#rough); }
+  .name { position: absolute; top: 1060px; left: 0; right: 0; text-align: center; }
+  .name span { display: inline-block; padding: 10px 26px; background: var(--lime); color: var(--forest); font: 800 36px var(--sans); border-radius: 8px; }
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="7"/></filter></svg>
+<div class="frame"><div class="shade"></div>
+  <div class="name"><span>A. 교보 손글씨 2019</span></div>
+  <div class="sub">
+    <span class="line">기록 말고 <span class="key">내 몸</span>에</span>
+    <span class="line">맞춰 달렸더니</span>
+  </div>
+</div></body></html>

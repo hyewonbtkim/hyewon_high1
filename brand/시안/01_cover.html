@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>표지 시안</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  html, body { width: 1080px; height: 1350px; background: var(--cream); }
+  .card { position: relative; width: 1080px; height: 1350px; background: var(--cream); }
+
+  .top { position: absolute; top: 80px; left: 96px; right: 96px; display: flex; align-items: center; justify-content: space-between; }
+  .label { display: flex; align-items: center; gap: 20px; }
+  .label .hand { font-size: 54px; }
+  .num { font-size: 26px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; }
+
+  .head { position: absolute; top: 300px; left: 96px; }
+  .h1 { font-size: 78px; font-weight: 800; color: var(--forest); letter-spacing: -0.03em; }
+  .h2 { font-size: 132px; font-weight: 900; color: var(--ink); letter-spacing: -0.045em; line-height: 1.12; margin-top: 18px; }
+
+  .note { position: absolute; top: 780px; left: 430px; transform: rotate(-4deg); }
+  .note .hand { font-size: 80px; white-space: nowrap; }
+  .note svg { position: absolute; left: -120px; top: -78px; }
+
+  .chip { position: absolute; top: 930px; left: 96px; display: inline-flex; align-items: center; gap: 14px; padding: 18px 30px; font-size: 34px; font-weight: 800; color: var(--forest); }
+  .chip::before { content: ""; position: absolute; inset: 0; border: 3.5px solid var(--forest); border-radius: 999px; filter: url(#rough); }
+  .dot { width: 20px; height: 20px; border-radius: 50%; filter: url(#rough); }
+
+  .band { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: var(--forest); overflow: hidden; display: flex; align-items: center; justify-content: space-between; padding: 0 96px; color: #fff; }
+  .band .who { font-size: 30px; font-weight: 500; opacity: 0.8; }
+  .band .who b { font-weight: 800; color: #fff; margin-left: 8px; }
+  .band .go { position: relative; z-index: 1; font-size: 58px; color: var(--lime); }
+  .stripes { position: absolute; right: -60px; top: -20px; display: flex; gap: 26px; transform: skewX(-24deg); filter: url(#rough); }
+  .stripes i { width: 34px; height: 260px; background: var(--lime); opacity: 0.14; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+  <filter id="marker"><feTurbulence type="fractalNoise" baseFrequency="0.025 0.12" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter>
+</svg>
+<div class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">스포츠영양 팁</span></div>
+    <div class="num">01 / 07</div>
+  </div>
+
+  <div class="head">
+    <div class="h1">35세 이후 여성이</div>
+    <div class="h2">단식하면<br><span class="hl">안 되는 신호</span></div>
+  </div>
+
+  <div class="note">
+    <svg width="130" height="90" viewBox="0 0 130 90" fill="none" stroke="#1F4A3A" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M118 74 C 92 70, 56 56, 30 18"/>
+      <path d="M22 40 L 28 14 L 52 22"/>
+    </svg>
+    <div class="hand">저도 몰라서 고생했어요ㅠ</div>
+  </div>
+
+  <div class="chip">
+    <span class="dot" style="background:var(--sig-red)"></span>
+    <span class="dot" style="background:var(--sig-yellow)"></span>
+    <span class="dot" style="background:var(--sig-green)"></span>
+    &nbsp;1분 자가진단
+  </div>
+
+  <div class="band">
+    <div class="stripes"><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="who">스포츠 영양코치<b>@hyewon_high1</b></div>
+    <div class="go hand">넘겨서 체크해 봐요 →</div>
+  </div>
+</div>
+</body>
+</html>

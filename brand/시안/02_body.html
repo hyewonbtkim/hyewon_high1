@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>본문 시안</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  html, body { width: 1080px; height: 1350px; background: var(--cream); }
+  .card { position: relative; width: 1080px; height: 1350px; padding: 72px 96px 0; background: var(--cream); }
+
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .label { display: flex; align-items: center; gap: 20px; }
+  .label .hand { font-size: 50px; }
+  .num { font-size: 24px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; }
+
+  h2 { margin-top: 36px; font-size: 64px; font-weight: 900; letter-spacing: -0.04em; color: var(--ink); }
+
+  .sec { margin-top: 32px; }
+  .badge { position: relative; z-index: 0; display: inline-flex; align-items: center; gap: 14px; padding: 10px 24px 10px 18px; font-size: 32px; font-weight: 800; color: #fff; }
+  .badge::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c); border-radius: 10px; filter: url(#rough); }
+  .badge .d { width: 18px; height: 18px; border-radius: 50%; background: currentColor; }
+  .red { --c: var(--sig-red); } .yellow { --c: var(--sig-yellow); color: var(--ink); } .green { --c: var(--sig-green); }
+
+  ul { list-style: none; margin-top: 14px; }
+  li { position: relative; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 500; line-height: 1.5; padding: 3px 0; }
+  li .box { flex: none; width: 30px; height: 30px; border: 3px solid var(--forest); border-radius: 5px; filter: url(#rough); }
+
+  .side { position: absolute; transform: rotate(-5deg); font-size: 60px; white-space: nowrap; }
+
+  .memo { position: absolute; left: 110px; right: 110px; bottom: 100px; padding: 26px 34px 22px; background: #FFFDF6; transform: rotate(-1.2deg); box-shadow: 0 2px 0 rgba(0,0,0,0.04), 0 10px 22px rgba(60,50,30,0.10); }
+  .memo .hand { font-size: 58px; line-height: 1.1; }
+  .memo .circle { position: relative; display: inline-block; }
+  .memo .circle svg { position: absolute; left: -26px; top: -22px; }
+  .memo .tape { left: -38px; top: -6px; width: 120px; height: 40px; transform: rotate(-32deg); }
+
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 44px; display: flex; justify-content: space-between; font-size: 22px; color: var(--muted); }
+  .foot b { color: var(--forest); font-weight: 800; }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+  <filter id="marker"><feTurbulence type="fractalNoise" baseFrequency="0.025 0.12" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter>
+</svg>
+<div class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">1분 자가진단</span></div>
+    <div class="num">02 / 07</div>
+  </div>
+
+  <h2>나는 <span class="hl">어디에</span> 해당할까?</h2>
+
+  <div class="sec">
+    <span class="badge red"><span class="d"></span>지금은 단식 STOP</span>
+    <ul>
+      <li><span class="box"></span>새벽 3~4시에 자주 깬다</li>
+      <li><span class="box"></span>생리 주기가 길어지거나 건너뛴다</li>
+      <li><span class="box"></span>주 3~4회 이상 고강도 운동 + 저탄수</li>
+      <li><span class="box"></span>손발이 차고, 머리카락이 많이 빠진다</li>
+      <li><span class="box"></span>음식 생각이 멈추지 않거나 폭식이 반복된다</li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <span class="badge yellow"><span class="d"></span>공복 시간 조정 필요</span>
+    <ul>
+      <li><span class="box"></span>아침에 손발·얼굴이 자주 붓는다</li>
+      <li><span class="box"></span>오후만 되면 무기력하다</li>
+      <li><span class="box"></span>운동 후 회복이 예전보다 느리다</li>
+      <li><span class="box"></span><span class="hl">주중엔 잘 참다가 주말에 무너진다</span>
+        <span class="hand side" style="left:600px; top:-16px;">← 예전의 저ㅋ</span></li>
+    </ul>
+  </div>
+
+  <div class="sec">
+    <span class="badge green"><span class="d"></span>시도해 볼 만함</span>
+    <ul>
+      <li><span class="box"></span>야식·과식이 일상이고 식사 시간이 불규칙하다</li>
+      <li><span class="box"></span>잠을 잘 자고, 생리 주기가 규칙적이다</li>
+    </ul>
+  </div>
+
+  <div class="memo">
+    <span class="tape"></span>
+    <div class="hand"><span class="circle"><svg width="200" height="92" viewBox="0 0 150 84" preserveAspectRatio="none" fill="none" stroke="#C9E84A" stroke-width="5" stroke-linecap="round"><path d="M18 46 C 14 18, 70 6, 118 14 C 150 20, 146 64, 96 74 C 56 82, 12 72, 16 40 C 18 30, 30 22, 44 18"/></svg>2개 이상</span> 체크된 구간을 기준으로 보세요!</div>
+  </div>
+
+  <div class="foot"><span>개인의 건강 상태에 따라 다를 수 있어요</span><span>스포츠 영양코치 <b>@hyewon_high1</b></span></div>
+</div>
+</body>
+</html>

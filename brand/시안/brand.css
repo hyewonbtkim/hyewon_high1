@@ -1,0 +1,49 @@
+/* 혜원 브랜드 토큰 (시안 v2: 스포츠영양 팁 + 손맛) */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=block");
+
+:root {
+  --cream: #F5F1E8;   /* 배경 */
+  --forest: #1F4A3A;  /* 메인 */
+  --lime: #D4F25A;    /* 포인트 (형광 러닝) */
+  --ink: #16211C;     /* 본문 */
+  --muted: #6F7A72;   /* 보조 */
+  --line: #DCD6C6;    /* 구분선 */
+  --sig-red: #E2553F;
+  --sig-yellow: #F0B429;
+  --sig-green: #3E9B63;
+  --sans: "Pretendard", "Noto Sans KR", sans-serif;
+  --hand: "Nanum Pen Script", cursive;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--sans); color: var(--ink); word-break: keep-all; -webkit-font-smoothing: antialiased; overflow: hidden; }
+
+/* 종이 질감 (카드뉴스 전용) */
+.paper::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5; mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.22  0 0 0 0.12 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* 페이스 스트라이프 (///) — 손으로 그은 느낌 */
+.pace { display: inline-flex; gap: 7px; transform: skewX(-22deg); filter: url(#rough); }
+.pace i { display: block; width: 9px; height: 30px; background: var(--lime); border-radius: 2px; }
+.pace.dark i { background: var(--forest); }
+
+/* 형광펜 — 가장자리가 고르지 않게 */
+.hl { position: relative; z-index: 0; white-space: nowrap; }
+.hl::before {
+  content: ""; position: absolute; z-index: -1;
+  left: -0.1em; right: -0.12em; top: 0.5em; bottom: 0.02em;
+  background: var(--lime); opacity: 0.92; transform: rotate(-1.4deg);
+  filter: url(#marker);
+}
+
+/* 손글씨 */
+.hand { font-family: var(--hand); color: var(--forest); line-height: 1; -webkit-text-stroke: 0.035em currentColor; letter-spacing: 0.01em; }
+
+/* 손으로 그린 테두리 */
+.rough { filter: url(#rough); }
+
+/* 마스킹 테이프 */
+.tape { position: absolute; width: 150px; height: 44px; background: rgba(212, 242, 90, 0.75); filter: url(#rough); }

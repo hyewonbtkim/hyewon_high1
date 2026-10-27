@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>릴스 자막 시안</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+  html, body { width: 1080px; height: 1920px; background: #000; }
+  .frame { position: relative; width: 1080px; height: 1920px; background: url("reel_bg.jpg") center / cover; }
+  .shade { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.45) 85%); }
+
+  /* 상단 태그 (모든 릴스 공통) */
+  .tag { position: absolute; top: 150px; left: 64px; display: flex; align-items: center; gap: 18px; padding: 14px 26px; background: var(--lime); border-radius: 999px; color: var(--forest); font-size: 30px; font-weight: 800; letter-spacing: 0.04em; box-shadow: 0 4px 14px rgba(0,0,0,0.25); }
+  .tag .pace i { height: 24px; width: 7px; }
+
+  /* 자막: 화면 높이 약 70% 지점, 인스타 하단 UI(약 320px) 위 */
+  .sub { position: absolute; left: 0; right: 0; top: 1395px; text-align: center; }
+  .line { display: block; font-size: 90px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.22; color: #fff;
+          -webkit-text-stroke: 14px var(--forest); paint-order: stroke fill; text-shadow: 0 8px 18px rgba(0,0,0,0.35); }
+  .key { display: inline-block; padding: 0 22px 4px; margin: 0 4px; background: var(--lime); color: var(--forest);
+         -webkit-text-stroke: 0; text-shadow: none; transform: skewX(-8deg) rotate(-2deg); border-radius: 10px; }
+  .key span { display: inline-block; transform: skewX(8deg); }
+
+  /* 손글씨 스티커 */
+  .sticker { position: absolute; top: 1290px; left: 90px; transform: rotate(-6deg); background: var(--lime); padding: 8px 26px 14px; border-radius: 6px; box-shadow: 0 6px 16px rgba(0,0,0,0.3); }
+  .sticker .hand { font-size: 72px; color: var(--forest); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="shade"></div>
+  <div class="tag"><span class="pace dark"><i></i><i></i><i></i></span>2024 춘천마라톤</div>
+
+  <div class="sticker"><div class="hand">심장 터지는 줄ㅋㅋ</div></div>
+
+  <div class="sub">
+    <span class="line"><span class="key"><span>5초</span></span> 남기고</span>
+    <span class="line">들어왔습니다</span>
+  </div>
+</div>
+</body>
+</html>

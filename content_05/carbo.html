@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>카보로딩 현실 식단표</title>
+<link rel="stylesheet" href="../brand/시안/brand.css">
+<style>
+  html, body { width: 1080px; background: var(--cream); overflow: visible; }
+  .card { position: relative; width: 1080px; height: 1350px; padding: 72px 96px 0; background: var(--cream); overflow: hidden; }
+
+  .top { display: flex; align-items: center; justify-content: space-between; }
+  .label { display: flex; align-items: center; gap: 20px; }
+  .label .hand { font-size: 50px; }
+  .num { font-size: 24px; font-weight: 600; color: var(--muted); letter-spacing: 0.08em; }
+
+  h2 { margin-top: 34px; font-size: 62px; font-weight: 900; letter-spacing: -0.04em; line-height: 1.22; color: var(--ink); }
+  .lead { margin-top: 18px; font-size: 30px; font-weight: 500; line-height: 1.55; color: var(--ink); }
+  .lead b { font-weight: 800; color: var(--forest); }
+
+  .foot { position: absolute; left: 96px; right: 96px; bottom: 44px; display: flex; justify-content: space-between; align-items: flex-end; font-size: 21px; color: var(--muted); line-height: 1.4; }
+  .foot b { color: var(--forest); font-weight: 800; }
+  .src { font-size: 19px; color: var(--muted); }
+
+  .doodle { stroke: var(--forest); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; filter: url(#rough); }
+  .side { position: absolute; transform: rotate(-5deg); white-space: nowrap; }
+
+  .memo { position: absolute; padding: 24px 32px 20px; background: #FFFDF6; transform: rotate(-1.2deg); box-shadow: 0 2px 0 rgba(0,0,0,0.04), 0 10px 22px rgba(60,50,30,0.10); }
+  .memo .hand { font-size: 52px; line-height: 1.15; }
+  .memo .tape { left: -38px; top: -6px; width: 120px; height: 40px; transform: rotate(-32deg); }
+
+  /* 01 표지 */
+  .cover h1 { margin-top: 150px; font-size: 104px; font-weight: 900; letter-spacing: -0.05em; line-height: 1.12; color: var(--ink); }
+  .cover .pre { margin-top: 110px; font-size: 44px; font-weight: 800; color: var(--forest); letter-spacing: -0.03em; }
+  .cover .sub { margin-top: 34px; font-size: 38px; font-weight: 700; color: var(--ink); letter-spacing: -0.03em; }
+  .cover .sub b { font-weight: 900; }
+  .bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 190px; background: var(--forest); display: flex; align-items: center; justify-content: center; padding: 0 96px; overflow: hidden; }
+  .bottom .who { position: relative; z-index: 1; font-size: 28px; font-weight: 600; color: #EDEFE6; }
+  .bottom .who b { font-weight: 800; color: #fff; }
+  .bottom .hand { position: relative; z-index: 1; font-size: 58px; color: var(--lime); }
+  .bottom .stripes { position: absolute; right: -40px; top: 0; bottom: 0; display: flex; gap: 26px; transform: skewX(-24deg); }
+  .bottom .stripes i { display: block; width: 34px; height: 100%; background: #2F6450; }
+
+  .bib { position: absolute; width: 300px; padding: 16px 22px 18px; background: #FFFDF6; border-radius: 10px; box-shadow: 0 3px 0 rgba(0,0,0,.04), 0 14px 26px rgba(60,50,30,.14); text-align: center; }
+  .bib::before, .bib::after { content: ""; position: absolute; top: 12px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #9AA39C; background: var(--cream); }
+  .bib::before { left: 12px; } .bib::after { right: 12px; }
+  .bib .band { margin: -16px -22px 12px; padding: 10px 0 8px; border-radius: 10px 10px 0 0; background: var(--forest); color: var(--lime); font-size: 26px; font-weight: 900; letter-spacing: -0.02em; }
+  .bib .band.l { background: var(--lime); color: var(--forest); }
+  .bib .d { font-size: 92px; font-weight: 900; line-height: 1; letter-spacing: -0.05em; color: var(--ink); }
+  .bib .dt { margin-top: 8px; font-size: 22px; font-weight: 700; color: var(--muted); letter-spacing: 0.06em; }
+  .bib .pin { position: absolute; bottom: 12px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #9AA39C; background: var(--cream); }
+
+  .bib2 { position: absolute; width: 300px; background: #FFFDF6; border-radius: 12px; overflow: hidden; box-shadow: 0 3px 0 rgba(0,0,0,.04), 0 16px 30px rgba(60,50,30,.18); }
+  .bib2 .logo { height: 158px; display: grid; place-items: center; }
+  .bib2 .dd { display: flex; align-items: baseline; justify-content: center; gap: 10px; padding: 8px 0 12px; }
+  .bib2 .dd b { font-size: 40px; font-weight: 900; letter-spacing: -0.04em; color: var(--ink); }
+  .bib2 .dd span { font-size: 19px; font-weight: 700; color: var(--muted); letter-spacing: .06em; }
+  .bib2 .p { position: absolute; top: 10px; width: 13px; height: 13px; border-radius: 50%; border: 3px solid #C9CEC9; background: var(--cream); }
+  /* 02 데이터 막대 */
+  .bars { margin-top: 46px; }
+  .bar { margin-bottom: 38px; }
+  .bar .t { display: flex; justify-content: space-between; align-items: baseline; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .bar .t span:last-child { font-size: 26px; font-weight: 600; color: var(--muted); }
+  .bar .track { position: relative; height: 66px; }
+  .srcline { margin-top: 8px; font-size: 19px; font-weight: 600; color: var(--muted); }
+  .bar .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 8px; filter: url(#rough); display: flex; align-items: center; padding-left: 22px; font-size: 34px; font-weight: 900; }
+  .f-real { width: 26%; background: #E7DFCB; color: var(--ink); border: 3px dashed var(--muted); }
+  .f-min { width: 53%; background: var(--lime); color: var(--forest); }
+  .f-max { width: 91%; background: var(--forest); color: #fff; }
+  .stat { display: flex; gap: 26px; margin-top: 44px; }
+  .stat div { flex: 1; padding: 22px 24px; border: 3px solid var(--forest); border-radius: 14px; filter: url(#rough); }
+  .stat em { display: block; font-style: normal; font-size: 64px; font-weight: 900; color: var(--forest); letter-spacing: -0.03em; line-height: 1; }
+  .stat p { margin-top: 10px; font-size: 24px; font-weight: 600; line-height: 1.4; }
+
+  /* 03 표 */
+  table { width: 100%; margin-top: 34px; border-collapse: separate; border-spacing: 0 14px; }
+  th { font-size: 24px; font-weight: 700; color: var(--muted); text-align: center; padding-bottom: 2px; }
+  th:first-child { text-align: left; }
+  td { font-size: 34px; font-weight: 800; text-align: center; padding: 20px 0; background: #FBF8F0; }
+  td:first-child { text-align: left; padding-left: 24px; border-radius: 12px 0 0 12px; font-size: 27px; font-weight: 700; line-height: 1.3; }
+  td:last-child { border-radius: 0 12px 12px 0; }
+  td small { display: block; font-size: 20px; font-weight: 600; color: var(--muted); margin-top: 4px; }
+  tr.pick td { background: var(--lime); color: var(--forest); }
+  tr.pick td small { color: var(--forest); opacity: .75; }
+  tr.max td { color: var(--muted); }
+  .s3 table { margin-top: 26px; border-spacing: 0 10px; }
+  .s3 td { padding-top: 11px; padding-bottom: 11px; }
+  .s3 .note { margin-top: 2px; font-size: 21px; font-weight: 600; color: var(--muted); }
+  .why { position: relative; isolation: isolate; margin-top: 26px; padding: 24px 30px 22px; }
+  .why::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #FFFDF6; border: 3px solid var(--forest); border-radius: 16px; filter: url(#rough); }
+  .why .hand { font-size: 46px; color: var(--forest); line-height: 1; }
+  .why ol { list-style: none; margin-top: 12px; }
+  .why li { display: flex; gap: 14px; font-size: 25px; font-weight: 600; line-height: 1.4; padding: 7px 0; }
+  .why li i { flex: none; width: 34px; height: 34px; display: grid; place-items: center; margin-top: 1px; font-style: normal; font-size: 20px; font-weight: 900; color: var(--forest); background: var(--lime); border-radius: 50%; }
+  .why li small { color: var(--muted); font-size: 19px; font-weight: 600; }
+  .s3 h2 { font-size: 56px; }
+  .why.w7 { margin-top: 18px; padding: 20px 28px 16px; }
+  .why.w7 + .why { margin-top: 16px; padding: 20px 28px 16px; }
+  .s3 .why .hand { font-size: 42px; }
+  .s3 .why li { font-size: 23px; padding: 5px 0; }
+  .s3 .why li i { width: 30px; height: 30px; font-size: 18px; }
+  .chip { display: inline-block; font-size: 18px; font-weight: 700; color: var(--forest); background: #E6EBDD; padding: 3px 10px; border-radius: 6px; margin-left: 6px; vertical-align: 3px; }
+  .grp { margin-top: 30px; padding-top: 18px; border-top: 2px dashed var(--line); font-size: 22px; font-weight: 700; color: var(--muted); }
+  .who-top { margin-top: 10px; font-size: 24px; font-weight: 600; color: var(--muted); }
+  .who-top b { color: var(--forest); font-weight: 800; }
+  .ph.memo-slot { background: transparent; box-shadow: none; display: grid; place-items: center; text-align: center; font-family: var(--hand); font-size: 36px; line-height: 1.15; color: var(--forest); }
+  .why .so { margin-top: 10px; padding-top: 14px; border-top: 2px dashed var(--line); font-size: 27px; font-weight: 800; color: var(--forest); }
+  .tag { display: inline-block; font-size: 20px; font-weight: 800; padding: 3px 10px; border-radius: 6px; background: var(--forest); color: var(--lime); margin-left: 8px; vertical-align: 4px; }
+
+  /* 04 하루 식단 */
+  .day { margin-top: 30px; }
+  .meal { display: flex; align-items: center; gap: 24px; padding: 15px 0; border-bottom: 2px dashed var(--line); }
+  .meal svg { flex: none; }
+  .meal .tm { flex: none; width: 92px; font-size: 24px; font-weight: 800; color: var(--muted); }
+  .meal .what { flex: 1; font-size: 28px; font-weight: 600; line-height: 1.35; }
+  .meal .what small { display: block; font-size: 21px; font-weight: 500; color: var(--muted); }
+  .meal .g { flex: none; font-size: 36px; font-weight: 900; color: var(--forest); }
+  .total { display: flex; align-items: center; justify-content: space-between; margin-top: 22px; padding: 20px 28px; background: var(--forest); border-radius: 14px; color: #fff; filter: url(#rough); }
+  .total span { font-size: 30px; font-weight: 700; }
+  .total b { font-size: 44px; font-weight: 900; color: var(--lime); }
+
+  /* 05 바꾸는 법 */
+  .rule { display: flex; gap: 26px; margin-top: 34px; }
+  .rule .n { flex: none; width: 66px; height: 66px; display: grid; place-items: center; font-size: 36px; font-weight: 900; color: var(--forest); background: var(--lime); border-radius: 50%; filter: url(#rough); }
+  .rule h3 { font-size: 36px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.3; }
+  .rule p { margin-top: 8px; font-size: 26px; font-weight: 500; line-height: 1.5; color: #3A443E; }
+  .rule p b { color: var(--forest); font-weight: 800; }
+
+  /* 06 내 식단 */
+  .photos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 30px; }
+  .ph { position: relative; background: #fff; padding: 8px 8px 0; box-shadow: 0 6px 14px rgba(60,50,30,.12); }
+  .ph:nth-child(odd) { transform: rotate(-2deg); } .ph:nth-child(even) { transform: rotate(1.6deg); }
+  .ph img { display: block; width: 100%; height: 128px; object-fit: cover; }
+  .ph span { display: block; text-align: center; font-family: var(--hand); font-size: 30px; color: var(--forest); padding: 4px 0 2px; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 26px; }
+  .yr { display: flex; align-items: baseline; gap: 14px; margin-top: 26px; }
+  .yr .hand { font-size: 40px; color: var(--muted); }
+  .yr b { font-size: 34px; font-weight: 900; color: var(--ink); letter-spacing: -0.02em; }
+  .yr.now .hand, .yr.now b { color: var(--forest); }
+  .yr em { font-style: normal; font-size: 20px; font-weight: 900; padding: 3px 10px; border-radius: 6px; background: var(--lime); color: var(--forest); }
+  .yr + .photos { margin-top: 10px; }
+  .yr .hr { margin-left: auto; font-size: 22px; font-weight: 700; color: var(--muted); }
+  .yr.now .hr { color: var(--forest); }
+  .insight { margin-top: 20px; padding: 18px 26px; background: var(--forest); border-radius: 14px; color: #fff; font-size: 24px; font-weight: 600; line-height: 1.5; }
+  .insight b { color: var(--lime); font-weight: 900; }
+  .note6 { position: absolute; left: 96px; bottom: 50px; font-size: 19px; color: var(--muted); }
+  .vs > div { padding: 24px 26px; border-radius: 14px; background: #FBF8F0; }
+  .vs > div.now { position: relative; isolation: isolate; background: transparent; }
+  .vs > div.now::before { content: ""; position: absolute; inset: 0; z-index: -1; border: 3px solid var(--forest); border-radius: 14px; filter: url(#rough); }
+  .vs .sum { margin: 6px 0 10px; font-size: 25px; font-weight: 800; color: var(--forest); }
+  .vs h4 { font-size: 26px; font-weight: 800; color: var(--muted); }
+  .vs .rec { font-size: 52px; font-weight: 900; color: var(--forest); letter-spacing: -0.03em; margin: 4px 0 12px; }
+  .vs li { list-style: none; font-size: 24px; font-weight: 600; line-height: 1.55; }
+  .vs li::before { content: "– "; color: var(--muted); }
+  .todo { font-size: 24px; font-weight: 700; color: var(--sig-red); }
+
+  /* 07 당일 */
+  .when { margin-top: 30px; padding: 26px 30px; border-radius: 16px; background: #FBF8F0; display: flex; gap: 26px; align-items: center; }
+  .when + .when { margin-top: 20px; }
+  .when .mine { margin-top: 8px; font-weight: 800; color: var(--forest); }
+  .ph.am { flex: none; width: 210px; transform: rotate(2deg); }
+  .ph.am img { height: 230px; }
+  .when .k { font-size: 26px; font-weight: 800; color: var(--muted); }
+  .when .v { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; margin: 4px 0 6px; }
+  .when .v .hl { color: var(--ink); }
+  .when p { font-size: 24px; font-weight: 500; line-height: 1.5; color: #3A443E; }
+
+  /* 08 요약 */
+  .check li { list-style: none; display: flex; align-items: flex-start; gap: 20px; font-size: 32px; font-weight: 700; line-height: 1.45; padding: 14px 0; border-bottom: 2px dashed var(--line); }
+  .check li .box { flex: none; margin-top: 8px; width: 34px; height: 34px; border: 3px solid var(--forest); border-radius: 6px; filter: url(#rough); position: relative; }
+  .check li .box::after { content: ""; position: absolute; left: 6px; top: -10px; width: 14px; height: 28px; border: solid var(--forest); border-width: 0 6px 6px 0; transform: rotate(40deg); }
+  .check li small { display: block; font-size: 23px; font-weight: 500; color: var(--muted); }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="4"/><feDisplacementMap in="SourceGraphic" scale="5"/></filter>
+  <filter id="marker"><feTurbulence type="fractalNoise" baseFrequency="0.025 0.12" numOctaves="3" seed="9"/><feDisplacementMap in="SourceGraphic" scale="14"/></filter>
+  <!-- 손그림 아이콘 -->
+  <symbol id="i-bowl" viewBox="0 0 100 100"><path d="M22 50 C 20 30, 40 20, 50 24 C 60 18, 82 28, 78 50" fill="#FFFDF6"/><path d="M36 34 l3 2 M52 30 l3 1 M64 38 l2 3 M44 42 l3 1" /><path d="M12 50 H88 C 86 72, 70 84, 50 84 C 30 84, 14 72, 12 50 Z" fill="#D4F25A"/><path d="M38 84 h24"/></symbol>
+  <symbol id="i-banana" viewBox="0 0 100 100"><path d="M18 30 C 22 66, 54 86, 86 70 C 88 66, 86 62, 82 62 C 56 70, 34 56, 28 28 Z" fill="#F0D45A"/><path d="M18 30 l-4 -8 l10 -2 l4 8"/><path d="M34 46 C 44 60, 58 66, 72 66" /></symbol>
+  <symbol id="i-bread" viewBox="0 0 100 100"><path d="M26 86 V44 C 12 40, 14 16, 34 16 H66 C 86 16, 88 40, 74 44 V86 Z" fill="#F2DDB0"/><path d="M34 50 c4 6 12 6 16 0 c4 6 12 6 16 0" stroke-width="3"/></symbol>
+  <symbol id="i-cup" viewBox="0 0 100 100"><path d="M28 22 H72 L66 86 H34 Z" fill="#F5B860"/><path d="M30 40 H70" /><path d="M56 22 L64 6"/></symbol>
+  <symbol id="i-cake" viewBox="0 0 100 100"><path d="M14 50 L50 30 L86 50 V78 H14 Z" fill="#F2C76A"/><path d="M14 50 H86 M14 50 C 30 46, 60 46, 86 50" /><path d="M14 56 H86" stroke="#8A5A2B"/></symbol>
+  <symbol id="i-gel" viewBox="0 0 100 100"><path d="M30 26 L50 10 L70 26 V86 H30 Z" fill="#D4F25A"/><path d="M30 40 H70 M40 58 h20 M40 68 h14"/></symbol>
+  <symbol id="i-shoe" viewBox="0 0 100 100"><path d="M10 70 C 10 50, 22 40, 34 42 L44 54 C 54 56, 70 58, 82 62 C 92 66, 92 78, 86 80 H14 C 10 80, 10 74, 10 70 Z" fill="#D4F25A"/><path d="M10 72 H90 M38 48 l6 -4 M44 54 l6 -4"/></symbol>
+  <symbol id="arrow" viewBox="0 0 120 60"><path d="M6 40 C 30 10, 70 6, 108 28 M92 14 L110 30 L88 38" fill="none"/></symbol>
+</svg>
+
+<!-- 01 표지 -->
+<section class="card paper cover">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">스포츠영양 팁</span></div>
+    <div class="num">01 / 08</div>
+  </div>
+  <div class="who-top">스포츠 영양코치 <b>@hyewon_high1</b></div>
+  <div class="pre" style="margin-top:80px">춘천마라톤 · JTBC마라톤</div>
+  <h1 style="margin-top:22px">카보로딩<br><span class="hl">현실 식단표</span></h1>
+  <div class="sub">체중 × 10g 말고, <b>평소의 2배</b>부터</div>
+  <svg class="doodle" style="position:absolute; left:120px; top:790px; transform:rotate(-6deg)" width="200" height="200" fill="none"><use href="#i-bowl"/></svg>
+  <svg class="doodle" style="position:absolute; left:380px; top:830px; transform:rotate(-10deg)" width="190" height="190" fill="none"><use href="#i-banana"/></svg>
+  <svg class="doodle" style="position:absolute; left:640px; top:800px; transform:rotate(10deg)" width="170" height="170" fill="none"><use href="#i-bread"/></svg><svg class="doodle" style="position:absolute; left:840px; top:850px; transform:rotate(-8deg)" width="130" height="130" fill="none"><use href="#i-gel"/></svg>
+  <div class="bib2" style="left:690px; top:200px; transform:rotate(5deg)">
+    <div class="logo" style="background:var(--forest)"><img src="assets/logo_chuncheon_2026.png" style="height:126px"></div>
+    <div class="dd"><b>D-3</b><span>10.25 SUN</span></div>
+    <i class="p" style="left:10px"></i><i class="p" style="right:10px"></i>
+  </div>
+  <div class="bib2" style="left:680px; top:445px; transform:rotate(-4deg)">
+    <div class="logo"><img src="assets/logo_jtbc_box.png" style="width:100%; height:100%; object-fit:cover"></div>
+    <div class="dd"><b>D-10</b><span>11.1 SUN</span></div>
+    <i class="p" style="left:10px"></i><i class="p" style="right:10px"></i>
+  </div>
+  <div class="hand side" style="left:330px; top:672px; font-size:56px;">저도 10g은 못 먹어요 ㅋ</div>
+  <svg class="doodle" style="position:absolute; left:190px; top:640px; transform:rotate(200deg) scaleY(-1)" width="120" height="60" fill="none"><use href="#arrow"/></svg>
+  <div class="bottom">
+    <div class="stripes"><i></i><i></i><i></i><i></i></div>
+    <div class="hand">저장해 두고 금요일에 →</div>
+  </div>
+</section>
+
+<!-- 02 현실 데이터 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">현실 데이터</span></div>
+    <div class="num">02 / 08</div>
+  </div>
+  <h2>대회 전날, 우리는<br>실제로 <span class="hl">얼마나</span> 먹을까?</h2>
+  <p class="lead">아마추어 마라토너 38명(평균 44.8세, 대부분 남성)의<br>대회 전날 24시간 식사 기록 <span class="chip">Lanpir 외 2025, Eur J Sport Sci</span></p>
+  <div class="bars" style="margin-top:30px">
+    <div class="bar"><div class="t"><span>실제로 먹은 탄수</span><span>55kg이면 약 190g</span></div><div class="track"><div class="fill f-real">체중 × 3.4g</div></div></div>
+  </div>
+  <div class="stat" style="margin-top:0">
+    <div><em>5%</em><p>권장량을 채운 사람<br>(38명 중 2명)</p></div>
+    <div><em>22g</em><p>레이스 중 1시간에 먹은 탄수<br>(권장 최소 30g에도 못 미침)</p></div>
+  </div>
+  <div class="grp">다른 연구 · 다른 기준과 비교하면</div>
+  <div class="bars" style="margin-top:18px">
+    <div class="bar"><div class="t"><span>전날 이만큼 먹은 러너가 더 빨랐어요</span><span>55kg이면 약 385g</span></div><div class="track"><div class="fill f-min">체중 × 7g ↑</div></div><div class="srcline">런던마라톤 참가자 257명 대상 · Atkinson 외 2011, Int J Sports Med</div></div>
+    <div class="bar"><div class="t"><span>공식 권장 (선수 기준)</span><span>550~660g</span></div><div class="track"><div class="fill f-max">체중 × 10~12g</div></div><div class="srcline">미국스포츠의학회(ACSM) 공동 성명 · Thomas 외 2016</div></div>
+  </div>
+</section>
+
+<!-- 03 현실 목표 -->
+<section class="card paper s3">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">현실 목표</span></div>
+    <div class="num">03 / 08</div>
+  </div>
+  <h2>전날 하루 탄수, 내 체중이면 <span class="hl">몇 g?</span></h2>
+  <table>
+    <tr><th></th><th>50kg</th><th>55kg</th><th>60kg</th></tr>
+    <tr><td>평소 (보통 식사)<small>체중 × 3.5g 안팎</small></td><td>175g</td><td>190g</td><td>210g</td></tr>
+    <tr class="pick"><td>최소 목표 ✱ <span class="tag">현실</span><small>체중 × 7g = 평소의 2배 · 남녀 공통 ✱✱</small></td><td>350g<small>밥 5공기</small></td><td>385g<small>밥 5.5공기</small></td><td>420g<small>밥 6공기</small></td></tr>
+    <tr class="max"><td>공식 최대치<small>체중 × 10~12g</small></td><td>500g~</td><td>550g~</td><td>600g~</td></tr>
+  </table>
+  <div class="note">밥 1공기(햇반 210g) = 탄수 약 70g으로 계산 · 공식 최대치: ACSM 공동 성명 (Thomas 외 2016)</div>
+  <div class="why w7">
+    <div class="hand">✱ 왜 최소 7g?</div>
+    <ol>
+      <li><i>1</i><div>런던마라톤 257명: 전날 <b>체중 × 7g 이상</b> 먹은 러너가 더 빨랐고 후반에도 덜 처졌어요 <small>Atkinson 2011</small></div></li>
+      <li><i>2</i><div>1시간 훈련하는 날 쓰는 양이 체중 × 5~7g → <b>7g은 넘겨야</b> 저장돼요 <small>Burke 외 2011</small></div></li>
+    </ol>
+  </div>
+  <div class="why">
+    <div class="hand">✱✱ 여성은 '비율' 말고 '양'으로</div>
+    <ol>
+      <li><i>1</i><div>식단의 탄수 '비율'만 75%로 올리자 남성은 근육 연료 41%↑, <b>여성은 그대로</b> <small>Tarnopolsky 1995</small></div></li>
+      <li><i>2</i><div>평소 먹는 양이 적으면 비율을 올려도 <b>실제 탄수 g은 부족</b>해요.<br>전체 양까지 늘리자 여성도 늘었어요 <small>Tarnopolsky 2001</small></div></li>
+      <li><i>3</i><div>충분히 먹으면 남녀 차이 없음 <small>James 2001</small></div></li>
+      <li><i>4</i><div>그래서 반찬을 줄여 비율만 맞추지 말고, <b>밥·빵·떡을 더해서 7g을 채우기</b></div></li>
+    </ol>
+  </div>
+  
+</section>
+
+<!-- 04 하루 식단 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">55kg 러너인 경우</span><span class="tag" style="vertical-align:0; margin-left:0">예시</span></div>
+    <div class="num">04 / 08</div>
+  </div>
+  <h2>평범한 음식으로 <span class="hl">385g</span> 채우기</h2>
+  <div class="day">
+    <div class="meal"><span class="tm">아침</span><svg class="doodle" width="70" height="70" fill="none"><use href="#i-bread"/></svg><div class="what">식빵 2장 + 잼 + 바나나 1개 + 오렌지주스 1컵<small>버터 · 땅콩버터는 얇게</small></div><span class="g">100g</span></div>
+    <div class="meal"><span class="tm">10시</span><svg class="doodle" width="70" height="70" fill="none"><use href="#i-cake"/></svg><div class="what">카스텔라 1개 (편의점)<small>또는 꿀떡 · 인절미 한 팩</small></div><span class="g">40g</span></div>
+    <div class="meal"><span class="tm">점심</span><svg class="doodle" width="70" height="70" fill="none"><use href="#i-bowl"/></svg><div class="what">흰밥 1공기 반 + 담백한 국 · 반찬<small>제육 · 튀김 대신 계란말이 · 생선</small></div><span class="g">115g</span></div>
+    <div class="meal"><span class="tm">3시</span><svg class="doodle" width="70" height="70" fill="none"><use href="#i-cup"/></svg><div class="what">바나나 1개 + 이온음료 1컵 (250ml)</div><span class="g">40g</span></div>
+    <div class="meal"><span class="tm">저녁</span><svg class="doodle" width="70" height="70" fill="none"><use href="#i-bowl"/></svg><div class="what">흰밥 1공기 + 감자조림 · 고구마 반 개<small>생선구이 · 두부처럼 기름 적은 단백질</small></div><span class="g">90g</span></div>
+  </div>
+  <div class="total"><span>합계 = 체중 55kg × 7g</span><b>약 385g</b></div>
+  <div class="hand side" style="left:96px; top:960px; font-size:50px; transform:rotate(-2deg)">한 번에 몰아 먹기보다 나눠서 먹는 걸 추천~!</div>
+  <div class="foot"><span>탄수 g은 일반 제품 표시 기준 대략값이에요. 제품마다 달라요</span></div>
+</section>
+
+<!-- 05 바꾸는 법 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">이것만 바꾸세요</span></div>
+    <div class="num">05 / 08</div>
+  </div>
+  <h2>새 식단 말고,<br><span class="hl">평소 식단</span>에서 3가지만</h2>
+  <div class="rule"><span class="n">1</span><div><h3>밥 · 빵 · 떡은 1.5~2배로</h3><p>끼니마다 조금씩, 간식 2번 추가.<br>한 번에 몰아 먹으면 속만 불편해요</p></div></div>
+  <div class="rule"><span class="n">2</span><div><h3>늘린 만큼 기름은 빼기</h3><p>삼겹살 · 치킨 · 크림 · 치즈는 <b>탄수는 적고 배만 불러요.</b><br>단백질은 끼니마다 조금씩만 유지</p></div></div>
+  <div class="rule"><span class="n">3</span><div><h3>여성은 '비율' 말고 '양'으로</h3><p>반찬을 줄여 비율만 맞추면 전체 양이 부족해서<br><b>근육 연료가 잘 안 채워져요.</b><br>이틀은 조금 더 먹는 날. 체중계는 잠시 넣어 두기</p></div></div>
+  <div class="memo" style="left:110px; right:110px; bottom:200px;">
+    <span class="tape"></span>
+    <div class="hand">처음 먹는 음식 · 처음 먹는 젤은 NO!</div>
+  </div>
+  <div class="foot"><span class="src">Tarnopolsky 외 (1995, 2001) J Appl Physiol · James 외 (2001) Eur J Appl Physiol</span></div>
+</section>
+
+<!-- 06 내 식단 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">제 실제 식단</span></div>
+    <div class="num">06 / 08</div>
+  </div>
+  <h2>2024 서브4 전날 vs<br>2025 PB 전날</h2>
+  <div class="yr"><span class="hand">2024 춘천</span><b>3:59:55</b><span class="hr">km 5:41 · 평균 심박 170 중반</span></div>
+  <div class="photos">
+    <div class="ph"><img src="assets/m1_0646.jpg"><span>06:46</span></div>
+    <div class="ph"><img src="assets/m2_1006_bar.jpg" style="object-position:45% 50%"><span>10:06</span></div>
+    <div class="ph"><img src="assets/m3_1113.jpg"><span>11:13</span></div>
+    <div class="ph"><img src="assets/m4_1750.jpg"><span>17:50</span></div>
+    <div class="ph"><img src="assets/m5_2101.jpg"><span>21:01</span></div>
+  </div>
+  <div class="yr now"><span class="hand">2025 JTBC</span><b>3:37:14</b><em>PB</em><span class="hr">km 5:07 · 평균 심박 165</span></div>
+  <div class="photos">
+    <div class="ph"><img src="assets/j1101_0640.jpg"><span>06:40</span></div>
+    <div class="ph"><img src="assets/j1101_1020.jpg"><span>10:20</span></div>
+    <div class="ph"><img src="assets/j1101_1226.jpg"><span>12:26</span></div>
+    <div class="ph"><img src="assets/j1101_1617.jpg"><span>16:17</span></div>
+    <div class="ph memo-slot">끝!<br>21시 취침<br>zzz</div>
+  </div>
+  <div class="vs">
+    <div>
+      <h4>2024 · 탄수 약 300g</h4>
+      <p class="sum">이것저것 다양하게 먹었지만,<br>탄수는 생각보다 많지 않았어요</p>
+      <ul>
+        <li>오전 간식은 프로틴바</li>
+        <li>점심 김밥 + <b>치즈</b>떡볶이</li>
+        <li>저녁 <b>삼겹살</b> + 밥 1공기 + 밤 간식</li>
+      </ul>
+    </div>
+    <div class="now">
+      <h4>2025 · 탄수 약 350g</h4>
+      <p class="sum">종류는 단순했지만,<br>탄수는 확실히 더 많았어요</p>
+      <ul>
+        <li>스콘·그래놀라·오트를 2~4시간마다</li>
+        <li>점심 국밥 + 밥 1공기</li>
+        <li>16:17 마지막 식사, 기름진 고기 X</li>
+      </ul>
+    </div>
+  </div>
+  <div class="insight"><b>포인트!</b> 메뉴는 사람마다 달라도 괜찮아요. 전날은 <b>일찍 푹 자는 게</b> 먼저.<br>잠을 방해하는 소화 느린 음식(기름지고 단백질 많은 음식)은 최소로</div>
+  <div class="foot"><span></span><span>스포츠 영양코치 <b>@hyewon_high1</b></span></div>
+</section>
+
+<!-- 07 당일 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">레이스 당일</span></div>
+    <div class="num">07 / 08</div>
+  </div>
+  <h2>로딩의 마무리는<br><span class="hl">아침 + 레이스 중</span></h2>
+  <div class="when">
+    <div style="flex:1"><div class="k">출발 2~3시간 전</div><div class="v">체중 × 1~2g</div><p>55kg이면 55~110g. 식빵 2장 + 바나나 + 잼 ≈ 85g<br>늘 먹던 메뉴로. 대회 날은 모험 금지!</p><p class="mine">제 JTBC 아침: 빵 + 바나나 + 스콘</p></div>
+    <div class="ph am"><img src="assets/j1102_0452.jpg"><span>대회 날 04:52</span></div>
+  </div>
+  <div class="when">
+    <svg class="doodle" width="110" height="110" fill="none"><use href="#i-gel"/></svg>
+    <div><div class="k">레이스 중 1시간마다</div><div class="v">30~60g = 젤 1~2개</div><p>아마추어 실제 평균은 1시간에 22g. <b>권장 최소치(30g)에도<br>못 미쳐요.</b> 4시간 러너면 젤 5~8개를 30~40분 간격으로</p></div>
+  </div>
+  <div class="memo" style="left:110px; right:110px; bottom:190px;">
+    <span class="tape"></span>
+    <div class="hand">실제 경험담 : 젤 6개로 달리다가<br>30km 이후에 진짜 후회 함 ㅋ</div>
+  </div>
+  <div class="foot"><span class="src">Thomas, Erdman &amp; Burke (2016) · Lanpir 외 (2025)</span></div>
+</section>
+
+<!-- 08 요약 -->
+<section class="card paper">
+  <div class="top">
+    <div class="label"><span class="pace dark"><i></i><i></i><i></i></span><span class="hand">금요일에 다시 보기</span></div>
+    <div class="num">08 / 08</div>
+  </div>
+  <h2>카보로딩 <span class="hl">체크리스트</span></h2>
+  <ul class="check" style="margin-top:34px">
+    <li><span class="box"></span><div>금 · 토 이틀, 탄수 평소의 2배<small>최소 체중 × 7g (55kg이면 약 385g)</small></div></li>
+    <li><span class="box"></span><div>늘린 만큼 기름진 건 빼기<small>삼겹살 · 치킨 · 크림 대신 담백하게</small></div></li>
+    <li><span class="box"></span><div>여성도 똑같이 7g, 비율 말고 양으로<small>체중이 늘어도 연료 + 수분이에요. 현타 금지</small></div></li>
+    <li><span class="box"></span><div>당일 아침은 늘 먹던 것<small>출발 2~3시간 전 체중 × 1~2g</small></div></li>
+    <li><span class="box"></span><div>젤은 '이 정도면 되겠지'보다 하나 더<small>1시간에 젤 1~2개</small></div></li>
+  </ul>
+  <svg class="doodle" style="position:absolute; right:96px; bottom:150px; transform:rotate(-8deg)" width="170" height="170" fill="none"><use href="#i-shoe"/></svg>
+  <div class="hand side" style="left:110px; bottom:180px; font-size:56px;">춘마 · 제마 동지들 화이팅!</div>
+  <div class="foot"><span>위장이 예민하거나 질환이 있다면 전문가와 상담하세요</span><span>스포츠 영양코치 <b>@hyewon_high1</b></span></div>
+</section>
+</body>
+</html>
